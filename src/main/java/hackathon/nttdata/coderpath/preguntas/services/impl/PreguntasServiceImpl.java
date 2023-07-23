@@ -18,31 +18,31 @@ import reactor.core.publisher.Mono;
 @Service
 @RequiredArgsConstructor
 public class PreguntasServiceImpl implements PreguntasServices{
-		private final PreguntaRepository preguntaRepository;
+		private final PreguntaRepository PreguntaRepository;
 	private final ApplicationConfiguration configuration;
 
 	@Override
 	public Mono<Preguntas> findById(String id) {
 		// TODO Auto-generated method stub
-		return preguntaRepository.findById(id);
+		return PreguntaRepository.findById(id);
 	}
 
 	@Override
 	public Flux<Preguntas> findAlls() {
 		// TODO Auto-generated method stub
-		return preguntaRepository.findAll();
+		return PreguntaRepository.findAll();
 	}
 
 	@Override
 	public Mono<Preguntas> saves(Preguntas document) {
 		// TODO Auto-generated method stub
-		return preguntaRepository.save(document);
+		return PreguntaRepository.save(document);
 	}
 
 	@Override
 	public Mono<Void> delete(Preguntas document) {
 		// TODO Auto-generated method stub
-		return preguntaRepository.delete(document);
+		return PreguntaRepository.delete(document);
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class PreguntasServiceImpl implements PreguntasServices{
 		// TODO Auto-generated method stub
 		Map<String, Object> response = Maps.newHashMap();
 		response.put("balanceador", configuration.getBalanceadorTest());
-		response.put("cursos_asset", findAlls());
+		response.put("preguntas_asset", findAlls());
 		return response;
 	}
 
