@@ -56,7 +56,7 @@ public class Preguntacontroller {
 		return ResponseEntity.ok(service.balanceadorTest());
 	}
 
-	@GetMapping("/Preguntas/all")
+	@GetMapping("/all")
 	public Flux<Preguntas> searchAll() {
 		Flux<Preguntas> per = service.findAlls();
 		log.info("PREGUNTA ASSET registered: " + per);
@@ -69,7 +69,7 @@ public class Preguntacontroller {
 		return service.findById(id);
 	}
 
-	@PostMapping("/create-Preguntas")
+	@PostMapping("/create-preguntas")
 	public Mono<Preguntas> createCursos(@Valid @RequestBody Preguntas preguntaAsset) {
 		log.info("Preguntas hackathon NTTTDATA create: " + service.saves(preguntaAsset));
 		Mono.just(preguntaAsset).doOnNext(t -> {
@@ -84,7 +84,7 @@ public class Preguntacontroller {
 		return newPersonalAsset;
 	}
 
-	@PutMapping("/update-Preguntas/{id}")
+	@PutMapping("/update-preguntas/{id}")
 	public ResponseEntity<Mono<?>> updatePreguntasAsset(@PathVariable String id, 
 			@Valid @RequestBody Preguntas preguntaAsset) {
 		Mono.just(preguntaAsset).doOnNext(t -> {
@@ -102,7 +102,7 @@ public class Preguntacontroller {
 		return new ResponseEntity<>(Mono.just(new Preguntas()), HttpStatus.I_AM_A_TEAPOT);
 	}
 
-	@DeleteMapping("/delete-Preguntas/{id}")
+	@DeleteMapping("/delete-preguntas/{id}")
 	public ResponseEntity<Mono<Void>> deletePreguntasAsset(@PathVariable String id) {
 		Preguntas PreguntasAsset = new Preguntas();
 		PreguntasAsset.setId(id);
