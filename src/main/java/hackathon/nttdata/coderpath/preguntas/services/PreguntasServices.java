@@ -60,7 +60,7 @@ public interface PreguntasServices {
 	Map<String, Object> rutaWebClientTest();
 	
 	//con Examen y pregunta
-		Mono<Preguntas> saveCursoExamenes(Preguntas document, String examenId);
+		Mono<Preguntas> saveExamenesPreguntas(Preguntas document, String examenId);
 	
 	
 }

@@ -173,7 +173,7 @@ public class PreguntasServiceImpl implements PreguntasServices{
 	}
 
 	@Override
-	public Mono<Preguntas> saveCursoExamenes(Preguntas document, String examenId) {
+	public Mono<Preguntas> saveExamenesPreguntas(Preguntas document, String examenId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
