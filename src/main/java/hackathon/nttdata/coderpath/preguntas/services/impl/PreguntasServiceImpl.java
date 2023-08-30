@@ -15,6 +15,7 @@ import com.google.common.collect.Maps;
 
 import hackathon.nttdata.coderpath.preguntas.config.ApplicationConfiguration;
 import hackathon.nttdata.coderpath.preguntas.documents.Preguntas;
+import hackathon.nttdata.coderpath.preguntas.documents.dtowebclient.Examen;
 import hackathon.nttdata.coderpath.preguntas.documents.dtowebclient.Respuesta;
 import hackathon.nttdata.coderpath.preguntas.repository.PreguntaRepository;
 import hackathon.nttdata.coderpath.preguntas.services.PreguntasServices;
@@ -26,11 +27,14 @@ import reactor.core.publisher.Mono;
 @Service
 @RequiredArgsConstructor
 public class PreguntasServiceImpl implements PreguntasServices{
-		private final PreguntaRepository PreguntaRepository;
+	private final PreguntaRepository preguntaRepository;
 	private final ApplicationConfiguration configuration;
 	
 	@Autowired
 	private WebClient client;
+	
+	final String urlServerExamen = "http://localhost:8090/api/examenes";
+	private WebClient webClientexamen = WebClient.create(urlServerExamen);
 	
 	private Mono<Respuesta> getRespuestaById(String id){
 		Mono<Respuesta> respuesta = 
@@ -39,7 +43,7 @@ public class PreguntasServiceImpl implements PreguntasServices{
 		return respuesta;
 	}
 	
-	public Mono<ServerResponse> getOne(ServerRequest request, String idx){
+	public Mono<ServerResponse> getOneRespuesta(ServerRequest request, String idx){
 		
 		String id = request.pathVariable(idx);
 		
@@ -47,28 +51,39 @@ public class PreguntasServiceImpl implements PreguntasServices{
 				.switchIfEmpty(ServerResponse.notFound().build()));
 	}
 	
+	
+	
+	private Mono<Examen> getExamenById(String id){
+		Mono<Examen> examen = 
+				webClientexamen.get().uri("/id/{id}", id).retrieve().bodyToMono(Examen.class);
+		return examen;			
+		
+	}
+	
+	
 	@Override
 	public Mono<Preguntas> findById(String id) {
 		// TODO Auto-generated method stub
-		return PreguntaRepository.findById(id);
+		return preguntaRepository.findById(id);
 	}
+	
 
 	@Override
 	public Flux<Preguntas> findAlls() {
 		// TODO Auto-generated method stub
-		return PreguntaRepository.findAll();
+		return preguntaRepository.findAll();
 	}
 
 	@Override
 	public Mono<Preguntas> saves(Preguntas document) {
 		// TODO Auto-generated method stub
-		return PreguntaRepository.save(document);
+		return preguntaRepository.save(document);
 	}
 
 	@Override
 	public Mono<Void> delete(Preguntas document) {
 		// TODO Auto-generated method stub
-		return PreguntaRepository.delete(document);
+		return preguntaRepository.delete(document);
 	}
 
 	@Override
@@ -123,6 +138,42 @@ public class PreguntasServiceImpl implements PreguntasServices{
 
 	@Override
 	public Mono<Preguntas> savePreguntasRespuesta(Preguntas document, String respuestaid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Flux<Examen> findAllExamen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Examen> findExamenesById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Examen> saveExamenes(Examen document) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Examen> updateExamenes(Examen document, String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Void> deleteExamenes(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Preguntas> saveCursoExamenes(Preguntas document, String examenId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
