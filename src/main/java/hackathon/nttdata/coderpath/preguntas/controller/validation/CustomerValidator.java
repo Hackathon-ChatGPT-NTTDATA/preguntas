@@ -1,7 +1,7 @@
 package hackathon.nttdata.coderpath.preguntas.controller.validation;
 
 
-import javax.validation.Validator;
+import jakarta.validation.Validator;
 import hackathon.nttdata.coderpath.preguntas.documents.Preguntas;
 import reactor.core.publisher.Mono;
 

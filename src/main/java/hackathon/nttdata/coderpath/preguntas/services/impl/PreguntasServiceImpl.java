@@ -47,7 +47,7 @@ public class PreguntasServiceImpl implements PreguntasServices{
 		
 		String id = request.pathVariable(idx);
 		
-		return this.findRespuestaById(id).flatMap(c -> ServerResponse.ok().contentType(APPLICATION_JSON_UTF8).syncBody(c)
+		return this.findRespuestaById(id).flatMap(c -> ServerResponse.ok().contentType(APPLICATION_JSON).syncBody(c)
 				.switchIfEmpty(ServerResponse.notFound().build()));
 	}
 	

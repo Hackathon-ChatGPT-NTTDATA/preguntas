@@ -2,7 +2,7 @@ package hackathon.nttdata.coderpath.preguntas.controller.validation;
 
 import java.util.List;
 
-import javax.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolation;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
